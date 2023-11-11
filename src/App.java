@@ -29,10 +29,21 @@ public class App extends javax.swing.JFrame {
     private void initComponents() {
 
         panelPrincipal = new javax.swing.JPanel();
+        menuPrincipal = new javax.swing.JMenuBar();
+        menuCandidatos = new javax.swing.JMenu();
+        menuInsertar = new javax.swing.JMenuItem();
+        menuActualizar = new javax.swing.JMenuItem();
+        menuBuscar = new javax.swing.JMenuItem();
+        menuEliminar = new javax.swing.JMenuItem();
+        menuListar = new javax.swing.JMenuItem();
+        menuVotos = new javax.swing.JMenu();
+        menuConteo = new javax.swing.JMenuItem();
+        menuResultado = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Mini Proyecto 2");
 
-        panelPrincipal.setBackground(new java.awt.Color(0, 102, 204));
+        panelPrincipal.setBackground(new java.awt.Color(9, 102, 204));
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
@@ -42,8 +53,39 @@ public class App extends javax.swing.JFrame {
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGap(0, 478, Short.MAX_VALUE)
         );
+
+        menuCandidatos.setText("Candidatos");
+
+        menuInsertar.setText("Insertar Candidatos");
+        menuCandidatos.add(menuInsertar);
+
+        menuActualizar.setText("Actualizar Candidatos");
+        menuCandidatos.add(menuActualizar);
+
+        menuBuscar.setText("Buscar Candidatos");
+        menuCandidatos.add(menuBuscar);
+
+        menuEliminar.setText("Eliminar Candidatos");
+        menuCandidatos.add(menuEliminar);
+
+        menuListar.setText("Listar Candidatos");
+        menuCandidatos.add(menuListar);
+
+        menuPrincipal.add(menuCandidatos);
+
+        menuVotos.setText("Votos");
+
+        menuConteo.setText("Conteo");
+        menuVotos.add(menuConteo);
+
+        menuResultado.setText("Resultados");
+        menuVotos.add(menuResultado);
+
+        menuPrincipal.add(menuVotos);
+
+        setJMenuBar(menuPrincipal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,6 +119,16 @@ public class App extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem menuActualizar;
+    private javax.swing.JMenuItem menuBuscar;
+    private javax.swing.JMenu menuCandidatos;
+    private javax.swing.JMenuItem menuConteo;
+    private javax.swing.JMenuItem menuEliminar;
+    private javax.swing.JMenuItem menuInsertar;
+    private javax.swing.JMenuItem menuListar;
+    private javax.swing.JMenuBar menuPrincipal;
+    private javax.swing.JMenuItem menuResultado;
+    private javax.swing.JMenu menuVotos;
     private javax.swing.JPanel panelPrincipal;
     // End of variables declaration//GEN-END:variables
 }
