@@ -11,7 +11,6 @@
 import javax.swing.plaf.metal.MetalLookAndFeel;
 
 public class App extends javax.swing.JFrame {
-
     /**
      * Creates new form App
      */
@@ -29,6 +28,9 @@ public class App extends javax.swing.JFrame {
     private void initComponents() {
 
         panelPrincipal = new javax.swing.JPanel();
+        panelSeparador = new javax.swing.JPanel();
+        tituloPrincipal = new javax.swing.JLabel();
+        panelMenus = new javax.swing.JPanel();
         menuPrincipal = new javax.swing.JMenuBar();
         menuCandidatos = new javax.swing.JMenu();
         menuInsertar = new javax.swing.JMenuItem();
@@ -42,23 +44,68 @@ public class App extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mini Proyecto 2");
+        setPreferredSize(new java.awt.Dimension(700, 400));
 
-        panelPrincipal.setBackground(new java.awt.Color(9, 102, 204));
+        panelSeparador.setBackground(new java.awt.Color(0, 102, 204));
+
+        javax.swing.GroupLayout panelSeparadorLayout = new javax.swing.GroupLayout(panelSeparador);
+        panelSeparador.setLayout(panelSeparadorLayout);
+        panelSeparadorLayout.setHorizontalGroup(
+            panelSeparadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        panelSeparadorLayout.setVerticalGroup(
+            panelSeparadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        tituloPrincipal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        tituloPrincipal.setText("Bienvenido, Ve al Menu de Candidatos para Iniciar La Aplicacion");
+
+        javax.swing.GroupLayout panelMenusLayout = new javax.swing.GroupLayout(panelMenus);
+        panelMenus.setLayout(panelMenusLayout);
+        panelMenusLayout.setHorizontalGroup(
+            panelMenusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        panelMenusLayout.setVerticalGroup(
+            panelMenusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 310, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
         panelPrincipalLayout.setHorizontalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addComponent(tituloPrincipal)
+                        .addGap(0, 62, Short.MAX_VALUE))
+                    .addComponent(panelMenus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelSeparador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 478, Short.MAX_VALUE)
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tituloPrincipal)
+                .addGap(26, 26, 26)
+                .addComponent(panelMenus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(panelSeparador, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         menuCandidatos.setText("Candidatos");
 
         menuInsertar.setText("Insertar Candidatos");
+        menuInsertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuInsertarActionPerformed(evt);
+            }
+        });
         menuCandidatos.add(menuInsertar);
 
         menuActualizar.setText("Actualizar Candidatos");
@@ -100,6 +147,17 @@ public class App extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void menuInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInsertarActionPerformed
+        PanelMenuInsertar panelMenuInsertar = new PanelMenuInsertar();
+        panelMenuInsertar.setSize(panelMenus.getSize());
+        
+        tituloPrincipal.setText("Insertar Candidato");
+        panelMenus.removeAll();
+        panelMenus.add(panelMenuInsertar);
+        panelMenus.revalidate();
+        panelMenus.repaint();
+    }//GEN-LAST:event_menuInsertarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,6 +187,9 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuPrincipal;
     private javax.swing.JMenuItem menuResultado;
     private javax.swing.JMenu menuVotos;
+    private javax.swing.JPanel panelMenus;
     private javax.swing.JPanel panelPrincipal;
+    private javax.swing.JPanel panelSeparador;
+    private javax.swing.JLabel tituloPrincipal;
     // End of variables declaration//GEN-END:variables
 }
