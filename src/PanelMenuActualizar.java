@@ -8,15 +8,16 @@
  *
  * @author juanm
  */
-public class PanelMenuInsertar extends javax.swing.JPanel {
+public class PanelMenuActualizar extends javax.swing.JPanel {
     private javax.swing.DefaultComboBoxModel<String> ciudadesModel;
     private javax.swing.DefaultComboBoxModel<String> partidosModel;
     /**
-     * Creates new form panelMenuInsertar
+     * Creates new form PanelMenuActualizar
      */
-    public PanelMenuInsertar() {
+    public PanelMenuActualizar() {
         generarCiudadesPartidos();
         initComponents();
+        panelInsertar.setVisible(false);
     }
     
     private void generarCiudadesPartidos() {
@@ -43,7 +44,10 @@ public class PanelMenuInsertar extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        grupoIdeologia = new javax.swing.ButtonGroup();
+        panelCampoBuscar = new javax.swing.JPanel();
+        nombreBusqueda = new javax.swing.JLabel();
+        campoBusqueda = new javax.swing.JTextField();
+        botonBusqueda = new javax.swing.JButton();
         panelInsertar = new javax.swing.JPanel();
         panelCampoInsertar1 = new javax.swing.JPanel();
         nombreInsertar = new javax.swing.JLabel();
@@ -67,7 +71,34 @@ public class PanelMenuInsertar extends javax.swing.JPanel {
         campoPromesaInsertar = new javax.swing.JTextArea();
         botonInsertar = new javax.swing.JButton();
 
-        setPreferredSize(new java.awt.Dimension(562, 300));
+        nombreBusqueda.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        nombreBusqueda.setText("Ingrese el nombre a buscar:");
+
+        campoBusqueda.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        botonBusqueda.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        botonBusqueda.setText("Buscar");
+
+        javax.swing.GroupLayout panelCampoBuscarLayout = new javax.swing.GroupLayout(panelCampoBuscar);
+        panelCampoBuscar.setLayout(panelCampoBuscarLayout);
+        panelCampoBuscarLayout.setHorizontalGroup(
+            panelCampoBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCampoBuscarLayout.createSequentialGroup()
+                .addComponent(nombreBusqueda)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(campoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(botonBusqueda))
+        );
+        panelCampoBuscarLayout.setVerticalGroup(
+            panelCampoBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCampoBuscarLayout.createSequentialGroup()
+                .addGroup(panelCampoBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoBusqueda)
+                    .addComponent(botonBusqueda)
+                    .addComponent(nombreBusqueda))
+                .addContainerGap())
+        );
 
         panelCampoInsertar1.setPreferredSize(new java.awt.Dimension(247, 33));
 
@@ -146,11 +177,9 @@ public class PanelMenuInsertar extends javax.swing.JPanel {
         ideologiaInsertar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         ideologiaInsertar.setText("Ideologia:");
 
-        grupoIdeologia.add(radioIzquierdaInsertar);
         radioIzquierdaInsertar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         radioIzquierdaInsertar.setText("Izquierda");
 
-        grupoIdeologia.add(radioDerechaInsertar);
         radioDerechaInsertar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         radioDerechaInsertar.setText("Derecha");
 
@@ -211,7 +240,7 @@ public class PanelMenuInsertar extends javax.swing.JPanel {
         panelCampoInsertar6.setLayout(panelCampoInsertar6Layout);
         panelCampoInsertar6Layout.setHorizontalGroup(
             panelCampoInsertar6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollPromesaInsertar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+            .addComponent(scrollPromesaInsertar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
             .addGroup(panelCampoInsertar6Layout.createSequentialGroup()
                 .addGap(100, 100, 100)
                 .addComponent(promesaInsertar)
@@ -227,12 +256,7 @@ public class PanelMenuInsertar extends javax.swing.JPanel {
         );
 
         botonInsertar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        botonInsertar.setText("Insertar");
-        botonInsertar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonInsertarActionPerformed(evt);
-            }
-        });
+        botonInsertar.setText("Actualizar");
 
         javax.swing.GroupLayout panelInsertarLayout = new javax.swing.GroupLayout(panelInsertar);
         panelInsertar.setLayout(panelInsertarLayout);
@@ -249,10 +273,10 @@ public class PanelMenuInsertar extends javax.swing.JPanel {
                     .addComponent(panelCampoInsertar5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(58, 58, 58)
                 .addComponent(panelCampoInsertar6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panelInsertarLayout.createSequentialGroup()
-                .addGap(241, 241, 241)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInsertarLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botonInsertar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(228, 228, 228))
         );
         panelInsertarLayout.setVerticalGroup(
             panelInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,24 +303,30 @@ public class PanelMenuInsertar extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelInsertar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelInsertar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(panelCampoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(panelCampoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInsertarActionPerformed
-        System.out.println("Entra");
-    }//GEN-LAST:event_botonInsertarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonBusqueda;
     private javax.swing.JButton botonInsertar;
+    private javax.swing.JTextField campoBusqueda;
     private javax.swing.JTextField campoCedulaInsertar;
     private javax.swing.JComboBox<String> campoCiudadInsertar;
     private javax.swing.JTextField campoNombreInsertar;
@@ -304,9 +334,10 @@ public class PanelMenuInsertar extends javax.swing.JPanel {
     private javax.swing.JTextArea campoPromesaInsertar;
     private javax.swing.JLabel cedulaInsertar;
     private javax.swing.JLabel ciudadInsertar;
-    private javax.swing.ButtonGroup grupoIdeologia;
     private javax.swing.JLabel ideologiaInsertar;
+    private javax.swing.JLabel nombreBusqueda;
     private javax.swing.JLabel nombreInsertar;
+    private javax.swing.JPanel panelCampoBuscar;
     private javax.swing.JPanel panelCampoInsertar1;
     private javax.swing.JPanel panelCampoInsertar2;
     private javax.swing.JPanel panelCampoInsertar3;
