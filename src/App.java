@@ -70,7 +70,7 @@ public class App extends javax.swing.JFrame {
         );
         panelMenusLayout.setVerticalGroup(
             panelMenusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
+            .addGap(0, 318, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
@@ -92,9 +92,9 @@ public class App extends javax.swing.JFrame {
             .addGroup(panelPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(tituloPrincipal)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelMenus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(18, 18, 18))
             .addComponent(panelSeparador, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -109,15 +109,35 @@ public class App extends javax.swing.JFrame {
         menuCandidatos.add(menuInsertar);
 
         menuActualizar.setText("Actualizar Candidatos");
+        menuActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuActualizarActionPerformed(evt);
+            }
+        });
         menuCandidatos.add(menuActualizar);
 
         menuBuscar.setText("Buscar Candidatos");
+        menuBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuBuscarActionPerformed(evt);
+            }
+        });
         menuCandidatos.add(menuBuscar);
 
         menuEliminar.setText("Eliminar Candidatos");
+        menuEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuEliminarActionPerformed(evt);
+            }
+        });
         menuCandidatos.add(menuEliminar);
 
         menuListar.setText("Listar Candidatos");
+        menuListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuListarActionPerformed(evt);
+            }
+        });
         menuCandidatos.add(menuListar);
 
         menuPrincipal.add(menuCandidatos);
@@ -158,6 +178,50 @@ public class App extends javax.swing.JFrame {
         panelMenus.revalidate();
         panelMenus.repaint();
     }//GEN-LAST:event_menuInsertarActionPerformed
+
+    private void menuActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuActualizarActionPerformed
+        PanelMenuActualizar panelMenuActualizar = new PanelMenuActualizar();
+        panelMenuActualizar.setSize(panelMenus.getSize());
+        
+        tituloPrincipal.setText("Actualizar Candidato");
+        panelMenus.removeAll();
+        panelMenus.add(panelMenuActualizar);
+        panelMenus.revalidate();
+        panelMenus.repaint();
+    }//GEN-LAST:event_menuActualizarActionPerformed
+
+    private void menuBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBuscarActionPerformed
+        PanelMenuBuscar panelMenuBuscar = new PanelMenuBuscar();
+        panelMenuBuscar.setSize(panelMenus.getSize());
+        
+        tituloPrincipal.setText("Buscar Candidato");
+        panelMenus.removeAll();
+        panelMenus.add(panelMenuBuscar);
+        panelMenus.revalidate();
+        panelMenus.repaint();
+    }//GEN-LAST:event_menuBuscarActionPerformed
+
+    private void menuEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEliminarActionPerformed
+        PanelMenuEliminar panelMenuEliminar = new PanelMenuEliminar();
+        panelMenuEliminar.setSize(panelMenus.getSize());
+        
+        tituloPrincipal.setText("Eliminar Candidato");
+        panelMenus.removeAll();
+        panelMenus.add(panelMenuEliminar);
+        panelMenus.revalidate();
+        panelMenus.repaint();
+    }//GEN-LAST:event_menuEliminarActionPerformed
+
+    private void menuListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuListarActionPerformed
+        PanelMenuListar panelMenuListar = new PanelMenuListar();
+        panelMenuListar.setSize(panelMenus.getSize());
+        
+        tituloPrincipal.setText("Listado de Candidatos");
+        panelMenus.removeAll();
+        panelMenus.add(panelMenuListar);
+        panelMenus.revalidate();
+        panelMenus.repaint();
+    }//GEN-LAST:event_menuListarActionPerformed
 
     /**
      * @param args the command line arguments
