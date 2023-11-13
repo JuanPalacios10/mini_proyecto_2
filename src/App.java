@@ -145,9 +145,19 @@ public class App extends javax.swing.JFrame {
         menuVotos.setText("Votos");
 
         menuConteo.setText("Conteo");
+        menuConteo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuConteoActionPerformed(evt);
+            }
+        });
         menuVotos.add(menuConteo);
 
         menuResultado.setText("Resultados");
+        menuResultado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuResultadoActionPerformed(evt);
+            }
+        });
         menuVotos.add(menuResultado);
 
         menuPrincipal.add(menuVotos);
@@ -222,6 +232,23 @@ public class App extends javax.swing.JFrame {
         panelMenus.revalidate();
         panelMenus.repaint();
     }//GEN-LAST:event_menuListarActionPerformed
+
+
+    private void menuConteoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConteoActionPerformed
+        PanelMenuConteo panelMenuConteo = new PanelMenuConteo();
+        panelMenuConteo.setSize(panelMenus.getSize());
+        
+        tituloPrincipal.setText("Conteo de Votos");
+        panelMenus.removeAll();
+        panelMenus.add(panelMenuConteo);
+        panelMenus.revalidate();
+        panelMenus.repaint();
+    }//GEN-LAST:event_menuConteoActionPerformed
+
+    private void menuResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuResultadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuResultadoActionPerformed
+
 
     /**
      * @param args the command line arguments
