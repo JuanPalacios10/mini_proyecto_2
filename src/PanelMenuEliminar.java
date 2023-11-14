@@ -38,6 +38,11 @@ public class PanelMenuEliminar extends javax.swing.JPanel {
 
         botonEliminar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         botonEliminar.setText("Eliminar");
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelCampoBuscarLayout = new javax.swing.GroupLayout(panelCampoBuscar);
         panelCampoBuscar.setLayout(panelCampoBuscarLayout);
@@ -77,6 +82,10 @@ public class PanelMenuEliminar extends javax.swing.JPanel {
                 .addContainerGap(257, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

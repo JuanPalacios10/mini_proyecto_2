@@ -1,10 +1,10 @@
 public class Candidato extends Ciudadano {
     private Ideologia ideologia;
     private Partidos partido;
-    private String promesas[];
+    private String promesas;
     private int votos;
 
-    public Candidato(String nombre, String cedula, Ciudades ciudad, Ideologia ideologia, Partidos partido, String[] promesas) {
+    public Candidato(String nombre, String cedula, Ciudades ciudad, Ideologia ideologia, Partidos partido, String promesas) {
         super(nombre, cedula, ciudad);
         this.ideologia = ideologia;
         this.partido = partido;
@@ -27,10 +27,10 @@ public class Candidato extends Ciudadano {
         this.partido = partido;
     }
     
-    public String[] getPromesas() {
+    public String getPromesas() {
         return promesas;
     }
-    public void setPromesas(String[] promesas) {
+    public void setPromesas(String promesas) {
         this.promesas = promesas;
     }
     public int getVotos() {

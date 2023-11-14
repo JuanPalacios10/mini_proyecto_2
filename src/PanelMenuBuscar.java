@@ -54,6 +54,11 @@ public class PanelMenuBuscar extends javax.swing.JPanel {
 
         botonBusqueda.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         botonBusqueda.setText("Buscar");
+        botonBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBusquedaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelCampoBuscarLayout = new javax.swing.GroupLayout(panelCampoBuscar);
         panelCampoBuscar.setLayout(panelCampoBuscarLayout);
@@ -242,6 +247,10 @@ public class PanelMenuBuscar extends javax.swing.JPanel {
                 .addGap(0, 40, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonBusquedaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

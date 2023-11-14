@@ -8,9 +8,11 @@
  *
  * @author juanm
  */
+import java.util.ArrayList;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 
 public class App extends javax.swing.JFrame {
+    public static ArrayList<Candidato> candidatos = new ArrayList<Candidato>();
     /**
      * Creates new form App
      */

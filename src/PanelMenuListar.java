@@ -33,6 +33,11 @@ public class PanelMenuListar extends javax.swing.JPanel {
 
         botonListar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         botonListar.setText("Listar");
+        botonListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonListarActionPerformed(evt);
+            }
+        });
 
         campoListar.setColumns(20);
         campoListar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -73,6 +78,10 @@ public class PanelMenuListar extends javax.swing.JPanel {
                 .addGap(0, 99, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonListarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
