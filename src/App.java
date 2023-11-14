@@ -245,7 +245,14 @@ public class App extends javax.swing.JFrame {
     }//GEN-LAST:event_menuConteoActionPerformed
 
     private void menuResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuResultadoActionPerformed
-        // TODO add your handling code here:
+        PanelMenuResultado panelMenuResultado = new PanelMenuResultado();
+        panelMenuResultado.setSize(panelMenus.getSize());
+        
+        tituloPrincipal.setText("Resultados de Las Votaciones");
+        panelMenus.removeAll();
+        panelMenus.add(panelMenuResultado);
+        panelMenus.revalidate();
+        panelMenus.repaint();
     }//GEN-LAST:event_menuResultadoActionPerformed
 
     /**
