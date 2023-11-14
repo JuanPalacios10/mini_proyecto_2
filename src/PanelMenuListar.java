@@ -80,7 +80,8 @@ public class PanelMenuListar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListarActionPerformed
-        // TODO add your handling code here:
+        campoListar.setText("");
+        campoListar.setText(Crud.listarCandidatos(App.candidatos));
     }//GEN-LAST:event_botonListarActionPerformed
 
 

@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author juanm
@@ -84,7 +86,14 @@ public class PanelMenuEliminar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-        // TODO add your handling code here:
+        if(Crud.estaCandidato(App.candidatos, campoBusqueda.getText())) {
+            Crud.eliminarCandidato(App.candidatos, campoBusqueda.getText());
+            JOptionPane.showMessageDialog(this.getRootPane(), "El candidato fue eliminado con exito", "Eliminar Candidato", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this.getRootPane(), "El candidato no fue encontrado", "Eliminar Candidato", JOptionPane.WARNING_MESSAGE);
+        }
+
+        campoBusqueda.setText("");
     }//GEN-LAST:event_botonEliminarActionPerformed
 
 
