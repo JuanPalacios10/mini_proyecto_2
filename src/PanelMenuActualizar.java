@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author juanm
@@ -69,7 +71,7 @@ public class PanelMenuActualizar extends javax.swing.JPanel {
         promesaInsertar = new javax.swing.JLabel();
         scrollPromesaInsertar = new javax.swing.JScrollPane();
         campoPromesaInsertar = new javax.swing.JTextArea();
-        botonInsertar = new javax.swing.JButton();
+        botonActualizar = new javax.swing.JButton();
 
         nombreBusqueda.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         nombreBusqueda.setText("Ingrese el nombre a buscar:");
@@ -78,6 +80,11 @@ public class PanelMenuActualizar extends javax.swing.JPanel {
 
         botonBusqueda.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         botonBusqueda.setText("Buscar");
+        botonBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBusquedaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelCampoBuscarLayout = new javax.swing.GroupLayout(panelCampoBuscar);
         panelCampoBuscar.setLayout(panelCampoBuscarLayout);
@@ -255,8 +262,13 @@ public class PanelMenuActualizar extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        botonInsertar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        botonInsertar.setText("Actualizar");
+        botonActualizar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        botonActualizar.setText("Actualizar");
+        botonActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonActualizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelInsertarLayout = new javax.swing.GroupLayout(panelInsertar);
         panelInsertar.setLayout(panelInsertarLayout);
@@ -275,7 +287,7 @@ public class PanelMenuActualizar extends javax.swing.JPanel {
                 .addComponent(panelCampoInsertar6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInsertarLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botonInsertar)
+                .addComponent(botonActualizar)
                 .addGap(228, 228, 228))
         );
         panelInsertarLayout.setVerticalGroup(
@@ -295,7 +307,7 @@ public class PanelMenuActualizar extends javax.swing.JPanel {
                         .addComponent(panelCampoInsertar5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(panelCampoInsertar6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(botonInsertar)
+                .addComponent(botonActualizar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -322,10 +334,49 @@ public class PanelMenuActualizar extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botonBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedaActionPerformed
+        if(Crud.estaCandidato(App.candidatos, campoBusqueda.getText())) {
+            panelInsertar.setVisible(true);
+            Candidato candidatoSeleccionado = Crud.buscarCandidato(App.candidatos, campoBusqueda.getText());
+
+            campoNombreInsertar.setText(candidatoSeleccionado.getNombre());
+            campoCedulaInsertar.setText(candidatoSeleccionado.getCedula());
+            campoCiudadInsertar.setSelectedItem(candidatoSeleccionado.getCiudad().toString().replace("_", " "));
+
+            if(candidatoSeleccionado.getIdeologia().equals(Ideologia.Izquierda)) radioIzquierdaInsertar.setSelected(true);
+            else if(candidatoSeleccionado.getIdeologia().equals(Ideologia.Derecha)) radioDerechaInsertar.setSelected(true);
+
+            campoPartidoInsertar.setSelectedItem(candidatoSeleccionado.getPartido().toString().replace("_", " "));
+            campoPromesaInsertar.setText(candidatoSeleccionado.getPromesas());
+        } else {
+            JOptionPane.showMessageDialog(this.getRootPane(), "El candidato no fue encontrado", "Actualizar Candidato", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_botonBusquedaActionPerformed
+
+    private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
+        Ideologia ideologia = Ideologia.Izquierda;
+        Ciudades ciudad = Ciudades.valueOf(campoCiudadInsertar.getSelectedItem().toString().replace(" ", "_"));
+        Partidos partido = Partidos.valueOf(campoPartidoInsertar.getSelectedItem().toString().replace(" ", "_"));
+
+        if(radioIzquierdaInsertar.isSelected()) ideologia = Ideologia.Izquierda;
+        else if(radioDerechaInsertar.isSelected()) ideologia = Ideologia.Derecha;
+
+        Candidato candidato = new Candidato(campoNombreInsertar.getText(), campoCedulaInsertar.getText(), ciudad, ideologia, partido, campoPromesaInsertar.getText());
+        
+        if(Crud.actualizarCandidato(App.candidatos, campoBusqueda.getText(), candidato)) {
+            JOptionPane.showMessageDialog(this.getRootPane(), "El candidato fue actualizado con exito", "Actualizar Candidato", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this.getRootPane(), "Debe llenar todos los campos", "Actualizar Candidato", JOptionPane.WARNING_MESSAGE);
+        }
+
+        campoBusqueda.setText("");
+        panelInsertar.setVisible(false);
+    }//GEN-LAST:event_botonActualizarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonActualizar;
     private javax.swing.JButton botonBusqueda;
-    private javax.swing.JButton botonInsertar;
     private javax.swing.JTextField campoBusqueda;
     private javax.swing.JTextField campoCedulaInsertar;
     private javax.swing.JComboBox<String> campoCiudadInsertar;
