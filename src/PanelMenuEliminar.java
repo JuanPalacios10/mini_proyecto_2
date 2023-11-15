@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author juanm
@@ -40,11 +38,6 @@ public class PanelMenuEliminar extends javax.swing.JPanel {
 
         botonEliminar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         botonEliminar.setText("Eliminar");
-        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEliminarActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout panelCampoBuscarLayout = new javax.swing.GroupLayout(panelCampoBuscar);
         panelCampoBuscar.setLayout(panelCampoBuscarLayout);
@@ -84,17 +77,6 @@ public class PanelMenuEliminar extends javax.swing.JPanel {
                 .addContainerGap(257, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-        if(Crud.estaCandidato(App.candidatos, campoBusqueda.getText())) {
-            Crud.eliminarCandidato(App.candidatos, campoBusqueda.getText());
-            JOptionPane.showMessageDialog(this.getRootPane(), "El candidato fue eliminado con exito", "Eliminar Candidato", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(this.getRootPane(), "El candidato no fue encontrado", "Eliminar Candidato", JOptionPane.WARNING_MESSAGE);
-        }
-
-        campoBusqueda.setText("");
-    }//GEN-LAST:event_botonEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
