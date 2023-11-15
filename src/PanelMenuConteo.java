@@ -4,6 +4,12 @@
  * and open the template in the editor.
  */
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author juanm
@@ -26,47 +32,137 @@ public class PanelMenuConteo extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tituloConteo = new javax.swing.JLabel();
         scrollMenuConteo = new javax.swing.JScrollPane();
         panelConteo = new javax.swing.JPanel();
-        botonIngresar = new javax.swing.JButton();
+        botonVotar = new javax.swing.JButton();
+        numVotos = new javax.swing.JTextField();
+        tituloVotos = new javax.swing.JLabel();
+        nombreVotos = new javax.swing.JLabel();
+        votosCandidatos = new HashMap<>();
 
-        tituloConteo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tituloConteo.setText("Ingrese los votos para:");
+        botonVotar.setText("Votar");
+        botonVotar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVotarActionPerformed(evt);
+            }
+        });
 
-        panelConteo.setLayout(new java.awt.GridLayout(2, 2, 30, 0));
+        numVotos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                numVotosActionPerformed(evt);
+            }
+        });
+
+        tituloVotos.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        tituloVotos.setText("Menú de votación");
+
+        nombreVotos.setText("<html> Ingrese el número de votos en el campo,<br>a continuación votar y aparecerá la<br>lista de candidatos a votar<html>");
+
+        javax.swing.GroupLayout panelConteoLayout = new javax.swing.GroupLayout(panelConteo);
+        panelConteo.setLayout(panelConteoLayout);
+        panelConteoLayout.setHorizontalGroup(
+            panelConteoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelConteoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tituloVotos, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(203, 203, 203))
+            .addGroup(panelConteoLayout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addComponent(nombreVotos, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addComponent(numVotos, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addComponent(botonVotar, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(90, Short.MAX_VALUE))
+        );
+        panelConteoLayout.setVerticalGroup(
+            panelConteoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelConteoLayout.createSequentialGroup()
+                .addComponent(tituloVotos, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
+                .addGroup(panelConteoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nombreVotos, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelConteoLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(panelConteoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(numVotos, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonVotar))))
+                .addContainerGap(289, Short.MAX_VALUE))
+        );
+
         scrollMenuConteo.setViewportView(panelConteo);
-
-        botonIngresar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        botonIngresar.setText("Ingresar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(tituloConteo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 339, Short.MAX_VALUE)
-                .addComponent(botonIngresar))
             .addComponent(scrollMenuConteo)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tituloConteo)
-                    .addComponent(botonIngresar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scrollMenuConteo, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGap(21, 21, 21)
+                .addComponent(scrollMenuConteo, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
+    private void botonVotarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVotarActionPerformed
+        try {
 
+            // Obtener el número de votos desde el campo de texto
+            int voto = Integer.parseInt(numVotos.getText());
+
+            // Verificar que haya al menos un candidato disponible
+            if (!candidatos.isEmpty()) {
+                // Mostrar una ventana de selección para elegir el candidato
+                String[] opciones = candidatos.stream().map(Candidato::getNombre).toArray(String[]::new);
+                String candidatoSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione un candidato:",
+                        "Votar", JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
+
+                // Verificar si se seleccionó un candidato
+                if (candidatoSeleccionado != null) {
+                    // Actualizar el Map de votos
+                    Candidato candidato = obtenerCandidatoPorNombre(candidatoSeleccionado);
+                    votosCandidatos.put(candidato, votosCandidatos.getOrDefault(candidato, 0) + voto);
+                    candidatos.remove(candidato);
+                    opciones = obtenerOpcionesDisponibles();
+
+                    // Mostrar el nombre de la persona para la que se va a votar en el Label
+                    nombreVotos.setText("Votando por: " + candidatoSeleccionado + " - Votos: " + voto);
+                    JOptionPane.showMessageDialog(null, "Voto registrado para " + candidatoSeleccionado);
+                }
+            }else {
+                    JOptionPane.showMessageDialog(null, "No hay candidatos disponibles para votar.");
+            }
+        } catch (NumberFormatException ex) {
+            // Manejar el caso en el que el usuario ingrese algo que no sea un número válido
+            JOptionPane.showMessageDialog(null, "Por favor, ingresa un valor numérico válido.");
+        }
+    }
+
+    private void numVotosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numVotosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numVotosActionPerformed
+
+    private ArrayList<Candidato> candidatos;
+    private Map<Candidato, Integer> votosCandidatos;
+    private String[] obtenerOpcionesDisponibles() {
+        return candidatos.stream().map(Candidato::getNombre).toArray(String[]::new);
+    }
+    private Candidato obtenerCandidatoPorNombre(String nombreCandidato) {
+        return candidatos.stream()
+                .filter(candidato -> candidato.getNombre().equals(nombreCandidato))
+                .findFirst()
+                .orElse(null);
+    }
+    // Variables declaration - do not modify//GEN-BEGIN:variables
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonIngresar;
+    private javax.swing.JButton botonVotar;
+    private javax.swing.JLabel nombreVotos;
+    private javax.swing.JTextField numVotos;
     private javax.swing.JPanel panelConteo;
     private javax.swing.JScrollPane scrollMenuConteo;
-    private javax.swing.JLabel tituloConteo;
+    private javax.swing.JLabel tituloVotos;
     // End of variables declaration//GEN-END:variables
 }

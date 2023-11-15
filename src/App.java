@@ -8,11 +8,9 @@
  *
  * @author juanm
  */
-import java.util.ArrayList;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 
 public class App extends javax.swing.JFrame {
-    public static ArrayList<Candidato> candidatos = new ArrayList<Candidato>();
     /**
      * Creates new form App
      */
@@ -235,7 +233,6 @@ public class App extends javax.swing.JFrame {
         panelMenus.repaint();
     }//GEN-LAST:event_menuListarActionPerformed
 
-
     private void menuConteoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConteoActionPerformed
         PanelMenuConteo panelMenuConteo = new PanelMenuConteo();
         panelMenuConteo.setSize(panelMenus.getSize());
@@ -257,7 +254,6 @@ public class App extends javax.swing.JFrame {
         panelMenus.revalidate();
         panelMenus.repaint();
     }//GEN-LAST:event_menuResultadoActionPerformed
-
 
     /**
      * @param args the command line arguments

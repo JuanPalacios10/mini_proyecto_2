@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author juanm
@@ -293,28 +291,7 @@ public class PanelMenuInsertar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInsertarActionPerformed
-        Ideologia ideologia = Ideologia.Izquierda;
-        Ciudades ciudad = Ciudades.valueOf(campoCiudadInsertar.getSelectedItem().toString().replace(" ", "_"));
-        Partidos partido = Partidos.valueOf(campoPartidoInsertar.getSelectedItem().toString().replace(" ", "_"));
-
-        if(radioIzquierdaInsertar.isSelected()) ideologia = Ideologia.Izquierda;
-        else if(radioDerechaInsertar.isSelected()) ideologia = Ideologia.Derecha;
-
-        Candidato candidato = new Candidato(campoNombreInsertar.getText(), campoCedulaInsertar.getText(), ciudad, ideologia, partido, campoPromesaInsertar.getText());
-
-        if(Crud.insertarCandidato(App.candidatos, candidato)) {
-            JOptionPane.showMessageDialog(this.getRootPane(), "El candidato fue agregado con exito", "Insertar Candidato", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            if(Crud.estaCandidato(App.candidatos, candidato.getNombre())) {
-                JOptionPane.showMessageDialog(this.getRootPane(), "El candidato ya se encuentra en la lista", "Insertar Candidato", JOptionPane.WARNING_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(this.getRootPane(), "El candidato no fue agregado con exito. Debe llenar todos los campos", "Insertar Candidato", JOptionPane.WARNING_MESSAGE);
-            }
-        }
-
-        campoNombreInsertar.setText("");
-        campoCedulaInsertar.setText("");
-        campoPromesaInsertar.setText("");
+        System.out.println("Entra");
     }//GEN-LAST:event_botonInsertarActionPerformed
 
 
