@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Crud {
     public static boolean insertarCandidato(ArrayList<Candidato> candidatos, Candidato candidato){
@@ -73,27 +74,7 @@ public class Crud {
 
         return listaCandidatos;
     }
-
-    public static void encontrarGanador(ArrayList<Candidato> candidatos) {
-        // Inicializar la persona con más votos con el primer elemento de la lista
-        Candidato ganador = candidatos.get(0);
-
-        // Iterar a través de la lista para encontrar la persona con la mayor número de votos
-        for (int i = 1; i < candidatos.size(); i++) {
-            Candidato candidato_iterador = candidatos.get(i);
-            if (candidato_iterador.getVotos() > ganador.getVotos()) {
-                ganador = candidato_iterador;
-            }
-        }
-
-        System.out.println("El ganador es " + ganador.getNombre() + " con número de cédula " + ganador.getCedula());
-        System.out.println("Lista de promesas de campaña del ganador: ");
-        // for(String promesa : ganador.getPromesas()) {
-        //     System.out.println("- " + promesa);
-        // }
-    }
-
-    public static void encontrarPartido(ArrayList<Candidato> candidatos) {
+    public static String encontrarPartido(ArrayList<Candidato> candidatos) {
         ArrayList<Short> numPartidos = new ArrayList<Short>();
         ArrayList<Partidos> partidoCandidatos = new ArrayList<Partidos>();
         Partidos partidosRepetidos[] = new Partidos[candidatos.size()];
@@ -126,24 +107,25 @@ public class Crud {
             }
         }
 
-        System.out.println("\nEl partido con mas candidatos es " + partidoCandidatos.get(indicePartido).toString().replace("_", " "));
+        return partidoCandidatos.get(indicePartido).toString().replace("_", " ");
     }
 
-    public static void encontrarTopCiudades(ArrayList<Candidato> candidatos) {
+    public static String encontrarTopCiudades(ArrayList<Candidato> candidatos) {
         ArrayList<Short> numCiudades = new ArrayList<Short>();
         ArrayList<Ciudades> ciudadCandidatos = new ArrayList<Ciudades>();
         Ciudades ciudadRepetidas[] = new Ciudades[candidatos.size()];
         short contadorCiudades = 0;
-
+        
         for(Candidato candidato : candidatos) {
             ciudadRepetidas[candidatos.indexOf(candidato)] = candidato.getCiudad();
         }
-
         for(Ciudades ciudad : Ciudades.values()) {
             contadorCiudades = 0;
 
             for(Ciudades ciudadRepetida : ciudadRepetidas) {
-                if(ciudad.equals(ciudadRepetida)) contadorCiudades++;
+                if(ciudad.equals(ciudadRepetida)) {
+                    contadorCiudades++;
+                }
             }
 
             if(contadorCiudades > 0) {
@@ -191,10 +173,8 @@ public class Crud {
                 }
             }
         }
-
-        System.out.println("\nTop 3 de las ciudades con menos candidatos como ciudad de origen\n");
-        for(short i = 0; i < topCiudades.length; i++) {
-            System.out.println((i + 1) + ". " + topCiudades[i].replace("_", " "));
-        }
+        
+        return String.join("\n", topCiudades);
     }
+    
 }

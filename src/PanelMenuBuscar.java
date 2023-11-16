@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author juanm
@@ -54,6 +56,11 @@ public class PanelMenuBuscar extends javax.swing.JPanel {
 
         botonBusqueda.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         botonBusqueda.setText("Buscar");
+        botonBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBusquedaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelCampoBuscarLayout = new javax.swing.GroupLayout(panelCampoBuscar);
         panelCampoBuscar.setLayout(panelCampoBuscarLayout);
@@ -139,7 +146,7 @@ public class PanelMenuBuscar extends javax.swing.JPanel {
             panelCampoInfo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCampoInfo4Layout.createSequentialGroup()
                 .addComponent(ideologiaInfo)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
 
         partidoInfo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -164,6 +171,7 @@ public class PanelMenuBuscar extends javax.swing.JPanel {
         campoPromesaInfo.setColumns(20);
         campoPromesaInfo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         campoPromesaInfo.setRows(5);
+        campoPromesaInfo.setEditable(false);
         scrollPromesaInfo.setViewportView(campoPromesaInfo);
 
         javax.swing.GroupLayout panelCampoInfo6Layout = new javax.swing.GroupLayout(panelCampoInfo6);
@@ -214,7 +222,7 @@ public class PanelMenuBuscar extends javax.swing.JPanel {
                     .addGroup(panelBuscarLayout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(panelCampoInfo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
+                        .addGap(33, 33, 33)
                         .addComponent(panelCampoInfo4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(panelCampoInfo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -242,6 +250,24 @@ public class PanelMenuBuscar extends javax.swing.JPanel {
                 .addGap(0, 40, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedaActionPerformed
+        if(Crud.estaCandidato(App.candidatos, campoBusqueda.getText())) {
+            Candidato candidatoSeleccionado = Crud.buscarCandidato(App.candidatos, campoBusqueda.getText());
+            panelBuscar.setVisible(true);
+
+            nombreInfo.setText("Nombre: " + candidatoSeleccionado.getNombre());
+            cedulaInfo.setText("Cedula: " + candidatoSeleccionado.getCedula());
+            ciudadInfo.setText("Ciudad: " + candidatoSeleccionado.getCiudad().toString().replace("_", " "));
+            ideologiaInfo.setText("Ideologia: " + candidatoSeleccionado.getIdeologia());
+            partidoInfo.setText("Partido: " + candidatoSeleccionado.getPartido().toString().replace("_", " "));
+            campoPromesaInfo.setText(candidatoSeleccionado.getPromesas());
+            campoBusqueda.setText("");
+        } else {
+            JOptionPane.showMessageDialog(this.getRootPane(), "El candidato no fue encontrado", "Buscar Candidato", JOptionPane.WARNING_MESSAGE);
+        }
+
+    }//GEN-LAST:event_botonBusquedaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
