@@ -8,9 +8,15 @@
  *
  * @author juanm
  */
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.swing.plaf.metal.MetalLookAndFeel;
 
 public class App extends javax.swing.JFrame {
+    public static ArrayList<Candidato> candidatos = new ArrayList<Candidato>();
+    
     /**
      * Creates new form App
      */
@@ -41,6 +47,7 @@ public class App extends javax.swing.JFrame {
         menuVotos = new javax.swing.JMenu();
         menuConteo = new javax.swing.JMenuItem();
         menuResultado = new javax.swing.JMenuItem();
+        votosCandidatos = new HashMap<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mini Proyecto 2");
@@ -233,6 +240,7 @@ public class App extends javax.swing.JFrame {
         panelMenus.repaint();
     }//GEN-LAST:event_menuListarActionPerformed
 
+
     private void menuConteoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConteoActionPerformed
         PanelMenuConteo panelMenuConteo = new PanelMenuConteo();
         panelMenuConteo.setSize(panelMenus.getSize());
@@ -255,6 +263,7 @@ public class App extends javax.swing.JFrame {
         panelMenus.repaint();
     }//GEN-LAST:event_menuResultadoActionPerformed
 
+
     /**
      * @param args the command line arguments
      */
@@ -271,12 +280,12 @@ public class App extends javax.swing.JFrame {
             }
         });
     }
-
+    public static Map<Candidato, Integer> votosCandidatos;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem menuActualizar;
     private javax.swing.JMenuItem menuBuscar;
-    private javax.swing.JMenu menuCandidatos;
-    private javax.swing.JMenuItem menuConteo;
+    public static javax.swing.JMenu menuCandidatos;
+    public static javax.swing.JMenuItem menuConteo;
     private javax.swing.JMenuItem menuEliminar;
     private javax.swing.JMenuItem menuInsertar;
     private javax.swing.JMenuItem menuListar;

@@ -38,7 +38,8 @@ public class PanelMenuConteo extends javax.swing.JPanel {
         numVotos = new javax.swing.JTextField();
         tituloVotos = new javax.swing.JLabel();
         nombreVotos = new javax.swing.JLabel();
-        votosCandidatos = new HashMap<>();
+        
+        
 
         botonVotar.setText("Votar");
         botonVotar.addActionListener(new java.awt.event.ActionListener() {
@@ -106,16 +107,18 @@ public class PanelMenuConteo extends javax.swing.JPanel {
                 .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
+    ArrayList<Candidato> candidatosLista= new ArrayList<>(App.candidatos);
     private void botonVotarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVotarActionPerformed
         try {
 
             // Obtener el número de votos desde el campo de texto
             int voto = Integer.parseInt(numVotos.getText());
+            
 
             // Verificar que haya al menos un candidato disponible
-            if (!candidatos.isEmpty()) {
+            if (!candidatosLista.isEmpty()) {
                 // Mostrar una ventana de selección para elegir el candidato
-                String[] opciones = candidatos.stream().map(Candidato::getNombre).toArray(String[]::new);
+                String[] opciones = candidatosLista.stream().map(Candidato::getNombre).toArray(String[]::new);
                 String candidatoSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione un candidato:",
                         "Votar", JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
 
@@ -123,8 +126,8 @@ public class PanelMenuConteo extends javax.swing.JPanel {
                 if (candidatoSeleccionado != null) {
                     // Actualizar el Map de votos
                     Candidato candidato = obtenerCandidatoPorNombre(candidatoSeleccionado);
-                    votosCandidatos.put(candidato, votosCandidatos.getOrDefault(candidato, 0) + voto);
-                    candidatos.remove(candidato);
+                    App.votosCandidatos.put(candidato, App.votosCandidatos.getOrDefault(candidato, 0) + voto);
+                    candidatosLista.remove(candidato);
                     opciones = obtenerOpcionesDisponibles();
 
                     // Mostrar el nombre de la persona para la que se va a votar en el Label
@@ -138,23 +141,25 @@ public class PanelMenuConteo extends javax.swing.JPanel {
             // Manejar el caso en el que el usuario ingrese algo que no sea un número válido
             JOptionPane.showMessageDialog(null, "Por favor, ingresa un valor numérico válido.");
         }
+        
     }
 
     private void numVotosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numVotosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_numVotosActionPerformed
 
-    private ArrayList<Candidato> candidatos;
-    private Map<Candidato, Integer> votosCandidatos;
+    
+    
     private String[] obtenerOpcionesDisponibles() {
-        return candidatos.stream().map(Candidato::getNombre).toArray(String[]::new);
+        return candidatosLista.stream().map(Candidato::getNombre).toArray(String[]::new);
     }
     private Candidato obtenerCandidatoPorNombre(String nombreCandidato) {
-        return candidatos.stream()
+        return candidatosLista.stream()
                 .filter(candidato -> candidato.getNombre().equals(nombreCandidato))
                 .findFirst()
                 .orElse(null);
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
