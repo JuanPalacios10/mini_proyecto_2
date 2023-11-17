@@ -262,11 +262,11 @@ public class PanelMenuBuscar extends javax.swing.JPanel {
             ideologiaInfo.setText("Ideologia: " + candidatoSeleccionado.getIdeologia());
             partidoInfo.setText("Partido: " + candidatoSeleccionado.getPartido().toString().replace("_", " "));
             campoPromesaInfo.setText(candidatoSeleccionado.getPromesas());
-            campoBusqueda.setText("");
         } else {
             JOptionPane.showMessageDialog(this.getRootPane(), "El candidato no fue encontrado", "Buscar Candidato", JOptionPane.WARNING_MESSAGE);
         }
 
+        campoBusqueda.setText("");
     }//GEN-LAST:event_botonBusquedaActionPerformed
 
 

@@ -3,19 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.swing.JOptionPane;
-
 /**
  *
  * @author juanm
  */
 public class PanelMenuConteo extends javax.swing.JPanel {
-
+    public ArrayList<Candidato> candidatosLista= new ArrayList<>(App.candidatos);
     /**
      * Creates new form PanelMenuConteo
      */
@@ -107,7 +102,7 @@ public class PanelMenuConteo extends javax.swing.JPanel {
                 .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
-    ArrayList<Candidato> candidatosLista= new ArrayList<>(App.candidatos);
+
     private void botonVotarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVotarActionPerformed
         try {
 
@@ -119,7 +114,7 @@ public class PanelMenuConteo extends javax.swing.JPanel {
             if (!candidatosLista.isEmpty()) {
                 // Mostrar una ventana de selección para elegir el candidato
                 String[] opciones = candidatosLista.stream().map(Candidato::getNombre).toArray(String[]::new);
-                String candidatoSeleccionado = (String) JOptionPane.showInputDialog(null, "Seleccione un candidato:",
+                String candidatoSeleccionado = (String)JOptionPane.showInputDialog(null, "Seleccione un candidato:",
                         "Votar", JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
 
                 // Verificar si se seleccionó un candidato
@@ -132,14 +127,14 @@ public class PanelMenuConteo extends javax.swing.JPanel {
 
                     // Mostrar el nombre de la persona para la que se va a votar en el Label
                     nombreVotos.setText("Votando por: " + candidatoSeleccionado + " - Votos: " + voto);
-                    JOptionPane.showMessageDialog(null, "Voto registrado para " + candidatoSeleccionado);
+                    JOptionPane.showMessageDialog(this.getRootPane(), "Voto registrado para " + candidatoSeleccionado);
                 }
             }else {
-                    JOptionPane.showMessageDialog(null, "No hay candidatos disponibles para votar.");
+                    JOptionPane.showMessageDialog(this.getRootPane(), "No hay candidatos disponibles para votar.");
             }
         } catch (NumberFormatException ex) {
             // Manejar el caso en el que el usuario ingrese algo que no sea un número válido
-            JOptionPane.showMessageDialog(null, "Por favor, ingresa un valor numérico válido.");
+            JOptionPane.showMessageDialog(this.getRootPane(), "Por favor, ingresa un valor numérico válido.");
         }
         
     }
@@ -147,8 +142,6 @@ public class PanelMenuConteo extends javax.swing.JPanel {
     private void numVotosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numVotosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_numVotosActionPerformed
-
-    
     
     private String[] obtenerOpcionesDisponibles() {
         return candidatosLista.stream().map(Candidato::getNombre).toArray(String[]::new);
@@ -159,8 +152,6 @@ public class PanelMenuConteo extends javax.swing.JPanel {
                 .findFirst()
                 .orElse(null);
     }
-    
-    // Variables declaration - do not modify//GEN-BEGIN:variables
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonVotar;
