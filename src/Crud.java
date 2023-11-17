@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Crud {
     public static boolean insertarCandidato(ArrayList<Candidato> candidatos, Candidato candidato){

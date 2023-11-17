@@ -11,12 +11,11 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.swing.plaf.metal.MetalLookAndFeel;
 
 public class App extends javax.swing.JFrame {
     public static ArrayList<Candidato> candidatos = new ArrayList<Candidato>();
-    
+    public static Map<Candidato, Integer> votosCandidatos;
     /**
      * Creates new form App
      */
@@ -280,7 +279,7 @@ public class App extends javax.swing.JFrame {
             }
         });
     }
-    public static Map<Candidato, Integer> votosCandidatos;
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem menuActualizar;
     private javax.swing.JMenuItem menuBuscar;

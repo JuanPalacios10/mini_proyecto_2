@@ -5,7 +5,6 @@
  * and open the template in the editor.
  */
 
-import java.util.ArrayList;
 import java.util.Map;
 
 import javax.swing.JOptionPane;
@@ -15,7 +14,6 @@ import javax.swing.JOptionPane;
  * @author juanm
  */
 public class PanelMenuResultado extends javax.swing.JPanel {
-
     /**
      * Creates new form PanelMenuResultado
      */
@@ -163,7 +161,7 @@ public class PanelMenuResultado extends javax.swing.JPanel {
             App.menuConteo.setVisible(false);
 
         } else {
-            JOptionPane.showMessageDialog(null, "Aún no hay votos registrados.");
+            JOptionPane.showMessageDialog(this.getRootPane(), "Aún no hay votos registrados.");
         }
     }        
 
@@ -182,7 +180,6 @@ public class PanelMenuResultado extends javax.swing.JPanel {
     
         return null;
     }
-    
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea CampoPartido;
